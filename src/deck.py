@@ -33,7 +33,3 @@ class Deck:
                         if s != Suit.JOKER:
                             card = Card(fv, s, HalfSuit.HIGHER)
                             self.cards.append(card)
-
-
-if __name__ == "__main__":
-    d = Deck(DeckType.STANDARD)
