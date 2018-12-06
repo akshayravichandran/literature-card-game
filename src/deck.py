@@ -1,5 +1,6 @@
 from card import Card
 from constants import DeckType, Suit, HalfSuit, FaceValue
+from datetime import datetime
 import random
 
 class Deck:
@@ -37,5 +38,6 @@ class Deck:
                         if s != Suit.JOKER:
                             self.cards.append(Card(fv, s, HalfSuit.HIGHER))
 
-    def shuffle(self):
+    def shuffle(self, seed=datetime.now()):
+        random.seed(seed)
         random.shuffle(self.cards)
