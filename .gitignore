@@ -1,2 +1,6 @@
 **/__pycache__/
+.idea/encodings.xml
+.idea/literature-card-game.iml
+.idea/misc.xml
+.idea/modules.xml
 .idea/workspace.xml
