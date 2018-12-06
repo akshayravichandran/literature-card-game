@@ -1,6 +1,6 @@
-from constants import DeckType, Suit, HalfSuit, FaceValue
 from card import Card
-
+from constants import DeckType, Suit, HalfSuit, FaceValue
+import random
 
 class Deck:
     def __init__(self, deck_type):
@@ -40,3 +40,6 @@ class Deck:
                         if s != Suit.JOKER:
                             card = Card(fv, s, HalfSuit.HIGHER)
                             self.cards.append(card)
+
+    def shuffle(self):
+        random.shuffle(self.cards)
