@@ -1,6 +1,7 @@
-from constants import DeckType, Suit, HalfSuit, FaceValue
 from card import Card
-
+from constants import DeckType, Suit, HalfSuit, FaceValue
+from datetime import datetime
+import random
 
 class Deck:
     def __init__(self, deck_type):
@@ -21,22 +22,22 @@ class Deck:
                     for s in Suit:
                         # ignore the JOKER suit (not to be confused with the JOKER half-suit)
                         if s != Suit.JOKER:
-                            card = Card(fv, s, HalfSuit.JOKER)
-                            self.cards.append(card)
+                            self.cards.append(Card(fv, s, HalfSuit.JOKER))
                 else:
                     # JOKER suit cards
-                    card = Card(fv, Suit.JOKER, HalfSuit.JOKER)
-                    self.cards.append(card)
+                    self.cards.append(Card(fv, Suit.JOKER, HalfSuit.JOKER))
             else:
                 if 2 <= fv.value <= 7:
                     # LOWER half-suits
                     for s in Suit:
                         if s != Suit.JOKER:
-                            card = Card(fv, s, HalfSuit.LOWER)
-                            self.cards.append(card)
+                            self.cards.append(Card(fv, s, HalfSuit.LOWER))
                 else:
                     # UPPER half-suits
                     for s in Suit:
                         if s != Suit.JOKER:
-                            card = Card(fv, s, HalfSuit.HIGHER)
-                            self.cards.append(card)
+                            self.cards.append(Card(fv, s, HalfSuit.HIGHER))
+
+    def shuffle(self, seed=datetime.now()):
+        random.seed(seed)
+        random.shuffle(self.cards)
