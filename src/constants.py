@@ -39,3 +39,11 @@ class HalfSuit(Enum):
     LOWER = auto()
     HIGHER = auto()
     JOKER = auto()
+
+
+@unique
+class PlayerActions(Enum):
+    ASK = auto()
+    DECLARE = auto()
+    PICK_TEAMMATE = auto()
+    PICK_OPPONENT = auto()
