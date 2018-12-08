@@ -3,6 +3,7 @@ from constants import DeckType, Suit, HalfSuit, FaceValue
 from datetime import datetime
 import random
 
+
 class Deck:
     def __init__(self, deck_type):
         self.cards = []
