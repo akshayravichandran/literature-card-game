@@ -2,7 +2,7 @@ class Player:
     def __init__(self, player_id, name='', cards={}):
         self.player_id = player_id
         self.name = name
-        self.cards = cards
+        self.cards = set(cards)
 
     def has_cards(self):
         return len(self.cards) == 0
@@ -12,3 +12,6 @@ class Player:
 
     def remove_card(self, card):
         self.cards.remove(card)
+    
+    def __str__(self):
+        return "Player: " + self.name

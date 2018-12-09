@@ -33,6 +33,7 @@ class Game:
             players[player_index].add_card(card)
             player_index = (player_index + 1) % len(players)
 
+    # COULD HONESTLY BE IN CONSTRUCTOR. USED ONLY ONCE
     # Select random starting player
     def pick_random_starting_player(self):
         self.current_player = random.choice(self.team_1.players + self.team_2.players)
@@ -64,3 +65,11 @@ class Game:
     # Return the opposing team player's team
     def get_current_player_opponent_team(self):
         return self.team_1 if self.current_player in self.team_2 else self.team_1
+
+
+# Test Code
+# def main():
+#         g1 = Game()
+#         p11 = g1.team_1.players[0]
+#         print((p11.cards))
+# main()

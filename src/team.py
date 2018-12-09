@@ -11,3 +11,6 @@ class Team:
             if player.has_cards():
                 return True
         return False
+
+    def __str__(self):
+        return "Team: "+str(self.team_id)
