@@ -8,8 +8,8 @@ import random
 
 class Game:
     def __init__(self, players_per_team=3, deck_type=DeckType.STANDARD):
-        self.team_1 = Team(1)
-        self.team_2 = Team(2)
+        self.team_1 = Team(1, [])
+        self.team_2 = Team(2, [])
         self.players_per_team = players_per_team
         self.deck_type = deck_type
         self.current_player = None

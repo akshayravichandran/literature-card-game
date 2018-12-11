@@ -13,4 +13,4 @@ class Team:
         return False
 
     def __str__(self):
-        return "Team: " + str(self.team_id) +"\nPlayers: " + str(self.players)
+        return "Team " + str(self.team_id) +"\n"+ str(len(self.players)) + " Players: " + str(self.players)
