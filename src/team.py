@@ -1,7 +1,7 @@
 class Team:
-    def __init__(self, team_id, players=[]):
+    def __init__(self, team_id, players=None):
         self.team_id = team_id
-        self.players = players
+        self.players = players or []
 
     def add_player(self, player):
         self.players.append(player)
