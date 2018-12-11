@@ -13,5 +13,5 @@ class Player:
     def remove_card(self, card):
         self.cards.remove(card)
     
-    def __str__(self):
-        return "Player: " + self.name
+    def __repr__(self):
+        return self.name

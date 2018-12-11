@@ -16,9 +16,9 @@ class Game:
 
         # Initialize players in teams
         for i in range(1, players_per_team+1):
-            self.team_1.add_player(Player(i))
+            self.team_1.add_player(Player(i, "player"+str(i)))
         for i in range(players_per_team+1, 2*players_per_team+1):
-            self.team_2.add_player(Player(i))
+            self.team_2.add_player(Player(i, "player"+str(i)))
 
         self.deal_cards()
         self.pick_random_starting_player()
@@ -67,9 +67,13 @@ class Game:
         return self.team_1 if self.current_player in self.team_2 else self.team_1
 
 
-# Test Code
-# def main():
-#         g1 = Game()
-#         p11 = g1.team_1.players[0]
-#         print((p11.cards))
-# main()
+# Test Game Loop
+def main():
+        g1 = Game()
+        t1 = g1.team_1
+        t2 = g1.team_2
+        print(t1)
+        print(t2)
+
+
+main()
