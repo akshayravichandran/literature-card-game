@@ -66,4 +66,6 @@ class Game:
     def get_current_player_opponent_team(self):
         return self.team_1 if self.current_player in self.team_2 else self.team_1
 
-
+    # Display current state of game
+    def show_game(self):
+        print("Current player: "+repr(self.current_player))
