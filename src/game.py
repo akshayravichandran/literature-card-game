@@ -67,13 +67,3 @@ class Game:
         return self.team_1 if self.current_player in self.team_2 else self.team_1
 
 
-# Test Game Loop
-def main():
-        g1 = Game()
-        t1 = g1.team_1
-        t2 = g1.team_2
-        print(t1)
-        print(t2)
-
-
-main()
