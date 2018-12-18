@@ -20,12 +20,6 @@ def main():
 
         # hardcoding player1 to start
         g.current_player = g.team_1.players[0]
-        #print(g.team_2.players[0].cards)
-
-        # simulation constants
-        flag = 1
-        cardToAsk_1 = Card(FaceValue.SIX, Suit.CLUB, HalfSuit.LOWER)         
-        cardToAsk_2 = Card(FaceValue.FIVE, Suit.CLUB, HalfSuit.LOWER)         
 
         gameExit = False
         while not gameExit:
@@ -36,29 +30,41 @@ def main():
                     if event.key == pygame.K_SPACE:
                         g.pick_random_starting_player()
 
-            # Ask action (assume player chose to ask)
+            # get action to perform
+            action = input("Ask or Declare? ")
+            if(action == "ask"):
 
-            playerToAsk = g.team_2.players[0]
+                # get player to ask from 
+                player_num = int(input("Enter player number "))
+                player_to_ask = g.get_player_from_num(player_num)
+                print(repr(player_to_ask))
 
-            # Different card each loop - simulate user input
-            if flag==1:
-                cardToAsk = cardToAsk_1
-                flag+=1
-            else:
-                cardToAsk = cardToAsk_2
+                # make sure you ask from other team only
+                if(g.check_if_players_on_same_team(g.current_player, player_to_ask)):
+                    print("Error: Players on same team")
+                    continue
+                else:
+                    print("Asking "+repr(player_to_ask))
 
-            # get the actual card reference from the deck
-            cardToAsk = g.deck.get_card_object(cardToAsk)
-            
-            if playerToAsk.has_card(cardToAsk):
-                playerToAsk.remove_card(cardToAsk)
-                g.current_player.add_card(cardToAsk)
-                print(repr(g.current_player)+" collected "+ repr(cardToAsk) + " from " + repr(playerToAsk))
-            else:
-                g.current_player = playerToAsk
-                print("Turn move to " + repr(playerToAsk))
-                break
+                # get card to ask
+                (fv, s, ls) = input("Enter Card FaceValue, Suit, HalfSuit: ").split(',')
+                card_to_ask = Card(FaceValue[fv], Suit[s], HalfSuit[ls])
 
+                # get the actual card reference from the deck
+                card_to_ask = g.deck.get_card_object(card_to_ask)
+                
+                # if currentplayer can ask for the card:
+                if g.current_player.has_set(card_to_ask):
+                    if player_to_ask.has_card(card_to_ask): 
+                        player_to_ask.remove_card(card_to_ask)
+                        g.current_player.add_card(card_to_ask)
+                        print(repr(g.current_player)+" collected "+ repr(card_to_ask) + " from " + repr(player_to_ask))
+                    else:
+                        g.current_player = player_to_ask
+                        print(repr(player_to_ask)+" did not have "+repr(card_to_ask))
+                        print("Turn moves to " + repr(player_to_ask))
+                else:
+                    print(repr(g.current_player) +" does not have a card in that set ")
 
             #pygame.draw.rect(win, (0,255,0), (x,y,width,height))
             #pygame.display.update()

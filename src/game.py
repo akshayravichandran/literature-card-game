@@ -67,6 +67,19 @@ class Game:
     def get_current_player_opponent_team(self):
         return self.team_1 if self.current_player in self.team_2 else self.team_1
 
+    def get_player_from_num(self, player_num):
+        if(player_num <= self.players_per_team):
+            return self.team_1.players[player_num-1]
+        else:
+            return self.team_2.players[player_num-self.players_per_team-1]
+
+    def check_if_players_on_same_team(self, player1, player2):
+        if player1==player2:
+            return True
+        if self.team_1.has_player(player1) and self.team_1.has_player(player2) or self.team_2.has_player(player1) and self.team_2.has_player(player2):
+            return True
+        return False
+
     # Display current state of game
     def show_game(self):
         print("Current player: "+repr(self.current_player))

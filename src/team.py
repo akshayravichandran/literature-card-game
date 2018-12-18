@@ -12,5 +12,10 @@ class Team:
                 return True
         return False
 
+    def has_player(self, player):
+        if player in self.players:
+            return True
+        return False
+
     def __str__(self):
         return "Team " + str(self.team_id) +"\n"+ str(len(self.players)) + " Players: " + str(self.players)

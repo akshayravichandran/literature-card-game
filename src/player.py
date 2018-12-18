@@ -15,6 +15,12 @@ class Player:
             return True
         return False
 
+    def has_set(self, card):
+        for c in self.cards:
+            if c.suit == card.suit and c.half_suit == card.half_suit:
+                return True
+        return False
+
     def remove_card(self, card):
         self.cards.remove(card)
 
