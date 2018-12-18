@@ -39,6 +39,13 @@ class Deck:
                         if s != Suit.JOKER:
                             self.cards.append(Card(fv, s, HalfSuit.HIGHER))
 
-    def shuffle(self, seed=datetime.now()):
+    def shuffle(self, seed=0):  #datetime.now()):
         random.seed(seed)
         random.shuffle(self.cards)
+
+    # get the original reference to a particular card
+    def get_card_object(self, card):
+        for c in self.cards:
+            if c == card:
+                return c
+        return None

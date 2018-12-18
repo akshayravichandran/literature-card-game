@@ -10,8 +10,13 @@ class Player:
     def add_card(self, card):
         self.cards.add(card)
 
+    def has_card(self, card):
+        if card in self.cards:
+            return True
+        return False
+
     def remove_card(self, card):
         self.cards.remove(card)
-    
+
     def __repr__(self):
         return self.name

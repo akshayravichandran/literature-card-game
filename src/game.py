@@ -11,6 +11,7 @@ class Game:
         self.team_1 = Team(1)
         self.team_2 = Team(2)
         self.players_per_team = players_per_team
+        self.deck = None
         self.deck_type = deck_type
         self.current_player = None
 
@@ -25,11 +26,11 @@ class Game:
 
     # Deal cards to all players
     def deal_cards(self):
-        deck = Deck(self.deck_type)
-        deck.shuffle()
+        self.deck = Deck(self.deck_type)
+        self.deck.shuffle()
         players = self.team_1.players + self.team_2.players
         player_index = 0
-        for card in deck.cards:
+        for card in self.deck.cards:
             players[player_index].add_card(card)
             player_index = (player_index + 1) % len(players)
 
