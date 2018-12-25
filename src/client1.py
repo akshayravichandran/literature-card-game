@@ -1,6 +1,7 @@
 # Import socket module 
 import socket                
-  
+
+MSG_SIZE = 1024 #bytes
 # Create a socket object 
 s = socket.socket()          
   
@@ -11,6 +12,10 @@ port = 12345
 s.connect(('127.0.0.1', port)) 
   
 # receive data from the server 
-print (s.recv(1024).decode())
+print ("Server says: "+s.recv(MSG_SIZE).decode())
+
+#send something back
+s.send("Ask player 1 for card 3 Hearts".encode())
+
 # close the connection 
 s.close()      
