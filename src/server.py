@@ -1,11 +1,17 @@
 
-# first of all import the socket library 
+# import the socket library 
 import socket                
 
 MSG_SIZE = 1024 #max bytes
+NUM_PLAYERS = 3
+connected_players = 0 
 
-# next create a socket object 
-s = socket.socket()          
+# create a socket object
+s = socket.socket()         
+
+# dict of clients and addresses
+c = [0]*NUM_PLAYERS 
+
 print ("Socket successfully created")
 
 # reserve a port on your computer in our 
@@ -28,17 +34,22 @@ print ("socket is listening")
 # an error occurs 
 while True: 
 
-    # Establish connection with client. 
-    c, addr = s.accept()      
-    print ('Got connection from', addr )
+    # Establish connection with all clients. 
+    while(connected_players < NUM_PLAYERS - 1): # -1 to discount server
+        client, addr = s.accept()      
+        print ('Got connection from', addr )
+        c[connected_players] = client
+        connected_players += 1
 
-    # send a thank you message to the client.  
-    c.send('Your turn to play'.encode()) 
+        # send a confirmation message to the client.  
+        client.send('Connected player'.encode()) 
 
     #receive whatever it says (input of player)
-    action = c.recv(MSG_SIZE).decode()
-    print (action)
+    action1 = c[0].recv(MSG_SIZE).decode()
+    action2 = c[1].recv(MSG_SIZE).decode()
+    print (action1)
+    print (action2)
 
     break
 # Close the connection with the client 
-c.close() 
+client.close() 
